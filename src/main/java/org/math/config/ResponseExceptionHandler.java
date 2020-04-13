@@ -15,6 +15,5 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler  {
     public ResponseEntity<Object> handleException(ResponseException ex,  WebRequest request) {
         return handleExceptionInternal(ex, ex.getMessage(),
                 new HttpHeaders(), ex.getStatusError(), request);
-//        return ResponseEntity.status(ex.getStatusError()).body(ex.getMessage());
     }
 }
