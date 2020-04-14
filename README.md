@@ -24,7 +24,7 @@ docker run –p 8080:8080 thiago/extenso
 
 #### Como utilizar
 
-Esse projeto contém a rota:
+Esse projeto contém a seguinte rota para requisição GET:
 
 * <i>http://localhost:8080/extenso/100</i>
 <br/>Retorno : cem
