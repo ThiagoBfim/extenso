@@ -19,7 +19,7 @@ public class ExtensoResourceENTest {
     private MockMvc mockMvc;
 
     @Test
-    public void shouldReturnDois() throws Exception {
+    public void shouldReturnTwo() throws Exception {
         mockMvc.perform(get("/extenso/2?linguagem=EN")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -28,7 +28,7 @@ public class ExtensoResourceENTest {
     }
 
     @Test
-    public void shouldReturnNoventaENove() throws Exception {
+    public void shouldReturnNinityNine() throws Exception {
         mockMvc.perform(get("/extenso/99?linguagem=EN")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -37,7 +37,7 @@ public class ExtensoResourceENTest {
     }
 
     @Test
-    public void shouldReturnTrezentosETrintraETres() throws Exception {
+    public void shouldReturnThreeHundredThirtyTree() throws Exception {
         mockMvc.perform(get("/extenso/333?linguagem=EN")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -46,12 +46,12 @@ public class ExtensoResourceENTest {
     }
 
     @Test
-    public void shouldReturnQuarentaMilTrezentosETrintraETres() throws Exception {
-        mockMvc.perform(get("/extenso/40333")
+    public void shouldReturnMinusThreeHundredThirtyTree() throws Exception {
+        mockMvc.perform(get("/extenso/-333?linguagem=EN")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("extenso").value("quarenta mil e trezentos e trinta e três"));
+                .andExpect(jsonPath("extenso").value("minus three hundred thirty three"));
     }
 
 }

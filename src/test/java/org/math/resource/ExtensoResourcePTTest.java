@@ -54,4 +54,13 @@ public class ExtensoResourcePTTest {
                 .andExpect(jsonPath("extenso").value("quarenta mil e trezentos e trinta e três"));
     }
 
+    @Test
+    public void shouldReturnMinusTrezentosETrintraETres() throws Exception {
+        mockMvc.perform(get("/extenso/-333")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("extenso").value("menos trezentos e trinta e três"));
+    }
+
 }

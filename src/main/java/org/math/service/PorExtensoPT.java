@@ -21,11 +21,6 @@ public class PorExtensoPT extends PorExtenso {
     }
 
     @Override
-    String getNomenclaturaMilhar() {
-        return "mil";
-    }
-
-    @Override
     protected void appendCentena(StringBuilder porExtenso, PorExtenso.SeparadorUnidades separadorUnidades) {
         if (separadorUnidades.getCentenas() == 1 && separadorUnidades.getUnidades() == 0 && separadorUnidades.getDezenas() == 0) {
             appendWhenPorExtensoIsNotEmpty(porExtenso, getConcatValue());
@@ -33,6 +28,16 @@ public class PorExtensoPT extends PorExtenso {
         } else if (separadorUnidades.getCentenas() > 0) {
             super.appendCentena(porExtenso, separadorUnidades);
         }
+    }
+
+    @Override
+    protected String getNomenclaturaNegative() {
+        return "menos";
+    }
+
+    @Override
+    String getNomenclaturaMilhar() {
+        return "mil";
     }
 
     @Override

@@ -19,6 +19,8 @@ public class PorExtensoPTTest {
 
     @Test
     public void assertionsUnidades() {
+        assertEquals("menos nove", porExtensoPT.resultado(-9));
+        assertEquals("menos cinco", porExtensoPT.resultado(-5));
         assertEquals("zero", porExtensoPT.resultado(0));
         assertEquals("sete", porExtensoPT.resultado(7));
         assertEquals("três", porExtensoPT.resultado(3));
@@ -28,6 +30,8 @@ public class PorExtensoPTTest {
 
     @Test
     public void assertionsDezenas() {
+        assertEquals("menos onze", porExtensoPT.resultado(-11));
+        assertEquals("menos dezenove", porExtensoPT.resultado(-19));
         assertEquals("dez", porExtensoPT.resultado(10));
         assertEquals("onze", porExtensoPT.resultado(11));
         assertEquals("dezenove", porExtensoPT.resultado(19));
@@ -39,6 +43,8 @@ public class PorExtensoPTTest {
 
     @Test
     public void assertionsCentenas() {
+        assertEquals("menos cento e um", porExtensoPT.resultado(-101));
+        assertEquals("menos cento e oitenta e seis", porExtensoPT.resultado(-186));
         assertEquals("cem", porExtensoPT.resultado(100));
         assertEquals("cento e um", porExtensoPT.resultado(101));
         assertEquals("cento e oitenta e seis", porExtensoPT.resultado(186));
@@ -48,6 +54,8 @@ public class PorExtensoPTTest {
 
     @Test
     public void assertionsMilhares() {
+        assertEquals("menos mil", porExtensoPT.resultado(-1_000));
+        assertEquals("menos mil e cem", porExtensoPT.resultado(-1_100));
         assertEquals("mil", porExtensoPT.resultado(1_000));
         assertEquals("mil e cem", porExtensoPT.resultado(1_100));
         assertEquals("onze mil", porExtensoPT.resultado(11_000));

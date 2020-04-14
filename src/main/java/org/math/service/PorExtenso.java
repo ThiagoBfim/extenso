@@ -7,14 +7,27 @@ import java.util.List;
 public abstract class PorExtenso {
 
     public String resultado(Integer numero) {
+        boolean isNumeroNegativo = numero < 0;
         StringBuilder porExtenso = new StringBuilder();
-        SeparadorUnidades separadorUnidades = new SeparadorUnidades(numero);
+        SeparadorUnidades separadorUnidades = new SeparadorUnidades(numero, isNumeroNegativo);
         appendMilhar(porExtenso, separadorUnidades);
         appendCentena(porExtenso, separadorUnidades);
         appendDezena(porExtenso, separadorUnidades);
         appendUnidadade(porExtenso, separadorUnidades);
+        if (isNumeroNegativo) {
+            porExtenso.insert(0, getNomenclaturaNegative().concat(" "));
+        }
         return porExtenso.toString();
     }
+
+
+    /**
+     * Nome quando o número for negativo.
+     * Exemplo: "menos"
+     *
+     * @return Nome quando for menos.
+     */
+    protected abstract String getNomenclaturaNegative();
 
     /**
      * Nome da unidade em milhar.
@@ -116,15 +129,21 @@ public abstract class PorExtenso {
     }
 
     protected static class SeparadorUnidades {
-        private Integer numero;
         private int milhares;
         private int centenas;
         private int dezenas;
         private int unidades;
 
-        public SeparadorUnidades(Integer numero) {
-            this.numero = numero;
-            invoke();
+        public SeparadorUnidades(int numero) {
+            this(numero, false);
+        }
+
+        public SeparadorUnidades(int numero, boolean isNumeroNegativo) {
+            if (isNumeroNegativo) {
+                invoke(numero * -1);
+            } else {
+                invoke(numero);
+            }
         }
 
         public int getMilhares() {
@@ -143,7 +162,7 @@ public abstract class PorExtenso {
             return unidades;
         }
 
-        private void invoke() {
+        private void invoke(int numero) {
             //Exemplo: 1553
             milhares = numero / 1000;
             numero -= milhares * 1000;  //553

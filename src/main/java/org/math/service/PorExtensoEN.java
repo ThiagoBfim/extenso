@@ -12,6 +12,11 @@ public class PorExtensoEN extends PorExtenso {
     private static final List<String> centenas = Collections.unmodifiableList(Arrays.asList("one hundred", "two hundred", "three hundred", "four hundred", "five hundred", "six hundred", "seven hundred", "eight hundred", "nine hundred"));
 
     @Override
+    protected String getNomenclaturaNegative() {
+        return "minus";
+    }
+
+    @Override
     String getNomenclaturaMilhar() {
         return "thousand";
     }
