@@ -1,6 +1,5 @@
 package org.math.resource;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ public class ExtensoResourceTest {
     MockMvc mockMvc;
 
     @Test
-    @Ignore("TODO implementar")
     public void shouldReturnFullNumber() throws Exception {
         mockMvc.perform(get("/extenso/2")
                 .accept(MediaType.APPLICATION_JSON))

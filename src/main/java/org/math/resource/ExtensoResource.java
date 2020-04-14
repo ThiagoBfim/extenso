@@ -2,6 +2,8 @@ package org.math.resource;
 
 import org.math.enuns.Language;
 import org.math.exception.WrongValueException;
+import org.math.model.ResponsePorExtenso;
+import org.math.service.PorExtensoFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +15,13 @@ public class ExtensoResource {
 
 
     @GetMapping(value = "/{numero}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getNumeroPorExtenso(@PathVariable(value = "numero") Integer numero,
-                                                      @RequestParam(value = "linguagem", defaultValue = "PT", required = false) String linguagem) {
+    public ResponseEntity<ResponsePorExtenso> getNumeroPorExtenso(@PathVariable(value = "numero") Integer numero,
+                                                  @RequestParam(value = "linguagem", defaultValue = "PT", required = false) String linguagem) {
         validarParametros(numero, linguagem);
-
-        return new ResponseEntity<>("ok", HttpStatus.OK);
+        String resultadoPorExtenso = PorExtensoFactory
+                .getPorExtensoInstance(Language.valueOf(linguagem))
+                .resultado(numero);
+        return new ResponseEntity<>(new ResponsePorExtenso(resultadoPorExtenso), HttpStatus.OK);
     }
 
     private void validarParametros(Integer numero,
