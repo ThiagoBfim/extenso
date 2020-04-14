@@ -8,9 +8,5 @@ public abstract class ResponseException extends RuntimeException {
         super(message);
     }
 
-    public ResponseException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
     public abstract HttpStatus getStatusError();
 }

@@ -1,7 +1,10 @@
 package org.math.service;
 
-public abstract class PorExtenso {
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.List;
+
+public abstract class PorExtenso {
 
     public String resultado(Integer numero) {
         StringBuilder porExtenso = new StringBuilder();
@@ -13,14 +16,104 @@ public abstract class PorExtenso {
         return porExtenso.toString();
     }
 
-    abstract void appendMilhar(StringBuilder porExtenso, SeparadorUnidades separadorUnidades);
+    /**
+     * Nome da unidade em milhar.
+     * Exemplo: "mil"
+     *
+     * @return Nome da unidade em Milhar.
+     */
+    abstract String getNomenclaturaMilhar();
 
-    abstract void appendCentena(StringBuilder porExtenso, SeparadorUnidades separadorUnidades);
+    /**
+     * Lista contendo todas as opções de centenas, entre 100 e 900:
+     * Exemplo: [cem, duzentos, trezentos, quatrocentos, ... novecentos]
+     * <p>
+     * Note: Essa lista deve conter exatamente 9 elementos.
+     *
+     * @return Lista contendo as opções de centenas.
+     */
+    abstract List<String> getCentenas();
 
-    abstract void appendDezena(StringBuilder porExtenso, SeparadorUnidades separadorUnidades);
+    /**
+     * Lista contendo todas as opções de dezenas, entre 10 e 19:
+     * Exemplo: [dez, onze, doze, treze .... dezenove]
+     * <p>
+     * Note: Essa lista deve conter exatamente 10 elementos.
+     *
+     * @return Lista contendo as opções da primeira dezena.
+     */
+    abstract List<String> getPrimeiraDezena();
 
-    abstract void appendUnidadade(StringBuilder porExtenso, SeparadorUnidades separadorUnidades);
+    /**
+     * Lista contendo todas as opções de dezenas, entre 10 e 90:
+     * Exemplo: [dez, vinte, trinta .... noventa]
+     * <p>
+     * Note: Essa lista deve conter exatamente 9 elementos.
+     *
+     * @return Lista contendo as opções de dezenas.
+     */
+    abstract List<String> getDezenas();
 
+    /**
+     * Lista contendo todas as opções de unidades, entre 0 e 9:
+     * Exemplo: [zero, um, dois .... nove]
+     * <p>
+     * Note: Essa lista deve conter exatamente 10 elementos.
+     *
+     * @return Lista contendo as opções de unidades.
+     */
+    abstract List<String> getUnidades();
+
+    /**
+     * Valor a ser concatenado entre as unidades.
+     * Exemplo: trinta "e" três.
+     *
+     * @return Valor a ser concatenado.
+     */
+    abstract String getConcatValue();
+
+    protected void appendMilhar(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
+        if (separadorUnidades.getMilhares() > 0) {
+            SeparadorUnidades separadorUnidadesMilhar = new SeparadorUnidades(separadorUnidades.getMilhares());
+            appendCentena(porExtenso, separadorUnidadesMilhar);
+            appendDezena(porExtenso, separadorUnidadesMilhar);
+            appendUnidadade(porExtenso, separadorUnidadesMilhar);
+            porExtenso.append(" ").append(getNomenclaturaMilhar());
+        }
+    }
+
+    protected void appendCentena(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
+        if (separadorUnidades.getCentenas() > 0) {
+            appendWhenPorExtensoIsNotEmpty(porExtenso, getConcatValue());
+            porExtenso.append(getCentenas().get(separadorUnidades.getCentenas() - 1));
+        }
+    }
+
+    protected void appendUnidadade(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
+        if (separadorUnidades.getUnidades() > 0 && separadorUnidades.getDezenas() != 1) {
+            appendWhenPorExtensoIsNotEmpty(porExtenso, getConcatValue());
+            porExtenso.append(getUnidades().get(separadorUnidades.getUnidades()));
+        } else if (StringUtils.isEmpty(porExtenso) && separadorUnidades.getUnidades() == 0) {
+            porExtenso.append(getUnidades().get(separadorUnidades.getUnidades()));
+        }
+    }
+
+    protected void appendDezena(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
+        if (separadorUnidades.getDezenas() > 0) {
+            appendWhenPorExtensoIsNotEmpty(porExtenso, getConcatValue());
+            if (separadorUnidades.getDezenas() == 1) {
+                porExtenso.append(getPrimeiraDezena().get(separadorUnidades.getUnidades()));
+            } else {
+                porExtenso.append(getDezenas().get(separadorUnidades.getDezenas() - 2));
+            }
+        }
+    }
+
+    final void appendWhenPorExtensoIsNotEmpty(StringBuilder porExtenso, String value) {
+        if (StringUtils.isNotEmpty(porExtenso)) {
+            porExtenso.append(value);
+        }
+    }
 
     protected static class SeparadorUnidades {
         private Integer numero;

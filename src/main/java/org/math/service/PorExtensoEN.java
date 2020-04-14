@@ -1,7 +1,5 @@
 package org.math.service;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -10,52 +8,38 @@ public class PorExtensoEN extends PorExtenso {
 
     private static final List<String> unidades = Collections.unmodifiableList(Arrays.asList("zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"));
     private static final List<String> primeiraDezena = Collections.unmodifiableList(Arrays.asList("ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"));
-    private static final List<String> dezendas = Collections.unmodifiableList(Arrays.asList("twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"));
+    private static final List<String> dezenas = Collections.unmodifiableList(Arrays.asList("twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"));
+    private static final List<String> centenas = Collections.unmodifiableList(Arrays.asList("one hundred", "two hundred", "three hundred", "four hundred", "five hundred", "six hundred", "seven hundred", "eight hundred", "nine hundred"));
 
     @Override
-    void appendMilhar(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
-        if (separadorUnidades.getMilhares() > 0) {
-            SeparadorUnidades separadorUnidadesMilhar = new SeparadorUnidades(separadorUnidades.getMilhares());
-            appendCentena(porExtenso, separadorUnidadesMilhar);
-            appendDezena(porExtenso, separadorUnidadesMilhar);
-            appendUnidadade(porExtenso, separadorUnidadesMilhar);
-            porExtenso.append(" thousand");
-        }
+    String getNomenclaturaMilhar() {
+        return "thousand";
     }
 
     @Override
-    void appendCentena(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
-        if (separadorUnidades.getCentenas() > 0) {
-            appendWhenPorExtensoIsNotEmpty(porExtenso, " ");
-            porExtenso.append(unidades.get(separadorUnidades.getCentenas())).append(" hundred");
-        }
+    protected List<String> getCentenas() {
+        return centenas;
     }
 
     @Override
-    void appendDezena(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
-        if (separadorUnidades.getDezenas() > 0) {
-            appendWhenPorExtensoIsNotEmpty(porExtenso, " and ");
-            if (separadorUnidades.getDezenas() == 1) {
-                porExtenso.append(primeiraDezena.get(separadorUnidades.getUnidades()));
-            } else {
-                porExtenso.append(dezendas.get(separadorUnidades.getDezenas() - 2));
-            }
-        }
+    protected List<String> getPrimeiraDezena() {
+        return primeiraDezena;
     }
 
     @Override
-    void appendUnidadade(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
-        if (separadorUnidades.getUnidades() > 0 && separadorUnidades.getDezenas() != 1) {
-            appendWhenPorExtensoIsNotEmpty(porExtenso, " ");
-            porExtenso.append(unidades.get(separadorUnidades.getUnidades()));
-        } else if (StringUtils.isEmpty(porExtenso) && separadorUnidades.getUnidades() == 0) {
-            porExtenso.append(unidades.get(separadorUnidades.getUnidades()));
-        }
+    protected List<String> getDezenas() {
+        return dezenas;
     }
 
-    private void appendWhenPorExtensoIsNotEmpty(StringBuilder porExtenso, String value) {
-        if (StringUtils.isNotEmpty(porExtenso)) {
-            porExtenso.append(value);
-        }
+
+    @Override
+    protected List<String> getUnidades() {
+        return unidades;
     }
+
+    @Override
+    protected String getConcatValue() {
+        return " ";
+    }
+
 }

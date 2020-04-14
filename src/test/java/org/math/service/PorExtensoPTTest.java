@@ -11,8 +11,9 @@ import static org.junit.Assert.assertEquals;
 public class PorExtensoPTTest {
 
     private static PorExtensoPT porExtensoPT;
+
     @BeforeClass
-    public static void setUp() throws Exception {
+    public static void setUp() {
         porExtensoPT = new PorExtensoPT();
     }
 
@@ -39,15 +40,18 @@ public class PorExtensoPTTest {
     @Test
     public void assertionsCentenas() {
         assertEquals("cem", porExtensoPT.resultado(100));
-        assertEquals("trezentos e trinta e três", porExtensoPT.resultado(333));
+        assertEquals("cento e um", porExtensoPT.resultado(101));
         assertEquals("cento e oitenta e seis", porExtensoPT.resultado(186));
+        assertEquals("trezentos e trinta e três", porExtensoPT.resultado(333));
         assertEquals("novecentos e noventa e nove", porExtensoPT.resultado(999));
     }
 
     @Test
     public void assertionsMilhares() {
         assertEquals("mil", porExtensoPT.resultado(1_000));
+        assertEquals("mil e cem", porExtensoPT.resultado(1_100));
         assertEquals("onze mil", porExtensoPT.resultado(11_000));
+        assertEquals("noventa e quatro mil e quinhentos e oitenta e sete", porExtensoPT.resultado(94_587));
         assertEquals("trezentos e trinta e três mil e quatrocentos e cinquenta", porExtensoPT.resultado(333_450));
         assertEquals("duzentos mil", porExtensoPT.resultado(200_000));
         assertEquals("novecentos e noventa e nove mil e novecentos e noventa e nove", porExtensoPT.resultado(999_999));
