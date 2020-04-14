@@ -9,23 +9,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(ExtensoResource.class)
 public class ExtensoResourceTest {
 
     @Autowired
-    MockMvc mockMvc;
-
-    @Test
-    public void shouldReturnFullNumber() throws Exception {
-        mockMvc.perform(get("/extenso/2")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("extenso").value("dois"));
-    }
+    private MockMvc mockMvc;
 
     @Test
     public void shouldReturnBadRequestWhenLanguageIsWrong() throws Exception {
