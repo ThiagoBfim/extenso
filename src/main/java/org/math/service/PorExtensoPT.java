@@ -17,7 +17,7 @@ public class PorExtensoPT extends PorExtenso {
     void appendMilhar(StringBuilder porExtenso, PorExtenso.SeparadorUnidades separadorUnidades) {
         if (separadorUnidades.getMilhares() == 1) {
             porExtenso.append("mil");
-        } else if (separadorUnidades.getMilhares() > 1) {
+        } else if (separadorUnidades.getMilhares() >= 1) {
             SeparadorUnidades separadorUnidadesMilhar = new SeparadorUnidades(separadorUnidades.getMilhares());
             appendCentena(porExtenso, separadorUnidadesMilhar);
             appendDezena(porExtenso, separadorUnidadesMilhar);
