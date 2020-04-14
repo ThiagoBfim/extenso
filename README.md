@@ -6,19 +6,32 @@ Projeto com o objetivo de forncer uma API para transformar o número por extenso
 ### Modo de uso
 #### Como iniciliazar
 
-Para inicializar o projeto é possível executando o arquivo main <code>ExtensoApplication</code>
+Para inicializar o projeto é possível executando o arquivo <code>ExtensoApplication</code>
 
-Ou por meio do docker, para isso é apenas executar:
+Ou com Docker, para isso é necessário  executar os seguintes comandos:
+
+<code>
+mvn clean install
+</code>
+<br/>
+<code>
+docker build -f Dockerfile -t thiago/extenso .
+</code>
+<br/>
+<code>
+docker run –p 8080:8080 thiago/extenso
+</code>
 
 #### Como utilizar
 
 Esse projeto contém a rota:
 
 * <i>http://localhost:8080/extenso/100</i>
-Retorno : cem
+<br/>Retorno : cem
 
-* <i>http://localhost:8080/extenso/100&language=en</i>
-Retorno : one hundred
+* <i>http://localhost:8080/extenso/100?linguagem=EN</i>
+<br/>Retorno : one hundred
+
 
 
 ### Tecnologias utilizadas:
