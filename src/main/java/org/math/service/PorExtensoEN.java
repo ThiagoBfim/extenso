@@ -1,8 +1,25 @@
 package org.math.service;
 
-public class PorExtensoEN implements PorExtenso{
+public class PorExtensoEN extends PorExtenso {
+
+
     @Override
-    public String resultado(Integer numero) {
-        return null;
+    void appendMilhar(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
+
+    }
+
+    @Override
+    void appendCentena(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
+
+    }
+
+    @Override
+    void appendDezena(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
+
+    }
+
+    @Override
+    void appendUnidadade(StringBuilder porExtenso, SeparadorUnidades separadorUnidades) {
+
     }
 }
