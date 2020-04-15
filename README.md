@@ -3,6 +3,10 @@
 ### Objetivo
 Projeto com o objetivo de forncer uma API para transformar o número por extenso. 
 
+Idiomas suportados:
+* Português
+* Inglês
+
 ### Modo de uso
 #### Como iniciliazar
 
