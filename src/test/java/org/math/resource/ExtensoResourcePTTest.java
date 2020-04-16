@@ -23,7 +23,7 @@ public class ExtensoResourcePTTest {
         mockMvc.perform(get("/extenso/2")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("extenso").value("dois"));
     }
 
@@ -32,7 +32,7 @@ public class ExtensoResourcePTTest {
         mockMvc.perform(get("/extenso/99")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("extenso").value("noventa e nove"));
     }
 
@@ -41,7 +41,7 @@ public class ExtensoResourcePTTest {
         mockMvc.perform(get("/extenso/333")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("extenso").value("trezentos e trinta e três"));
     }
 
@@ -50,7 +50,7 @@ public class ExtensoResourcePTTest {
         mockMvc.perform(get("/extenso/40333")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("extenso").value("quarenta mil e trezentos e trinta e três"));
     }
 
@@ -59,7 +59,7 @@ public class ExtensoResourcePTTest {
         mockMvc.perform(get("/extenso/-333")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("extenso").value("menos trezentos e trinta e três"));
     }
 

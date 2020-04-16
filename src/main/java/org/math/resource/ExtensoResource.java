@@ -32,13 +32,13 @@ public class ExtensoResource {
 
     private void validarLinguagem(String linguagem) {
         if (Language.notContains(linguagem)) {
-            throw new WrongValueException(String.format("The Param 'linguagem' was incorrect. Accept values  are: '%s'", Language.description()));
+            throw new WrongValueException(String.format("O parâmetro 'linguagem' está incorreto. Valores aceitos são: '%s'", Language.description()));
         }
     }
 
     private void validarNumero(Integer numero) {
         if (numero > 100_000 || numero < -100_000) {
-            throw new WrongValueException("The Param 'numero' have to be in range [-99999, 99999]");
+            throw new WrongValueException("O parâmetro 'numero' precisa estar no conjunto : [-99999, 99999]");
         }
     }
 

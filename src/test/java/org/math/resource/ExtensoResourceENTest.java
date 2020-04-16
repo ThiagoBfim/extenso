@@ -23,7 +23,7 @@ public class ExtensoResourceENTest {
         mockMvc.perform(get("/extenso/2?linguagem=EN")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("extenso").value("two"));
     }
 
@@ -32,7 +32,7 @@ public class ExtensoResourceENTest {
         mockMvc.perform(get("/extenso/99?linguagem=EN")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("extenso").value("ninety nine"));
     }
 
@@ -41,7 +41,7 @@ public class ExtensoResourceENTest {
         mockMvc.perform(get("/extenso/333?linguagem=EN")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("extenso").value("three hundred thirty three"));
     }
 
@@ -50,7 +50,7 @@ public class ExtensoResourceENTest {
         mockMvc.perform(get("/extenso/-333?linguagem=EN")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("extenso").value("minus three hundred thirty three"));
     }
 
